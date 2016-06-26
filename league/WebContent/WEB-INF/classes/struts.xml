@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="user" extends="struts-default">
+		<action name="saveUser" class="SaveUserAction">
+			<result name="success">/index.jsp</result>
+			<result name="input">/register.jsp</result>
+		</action>
+		<action name="listUser" class="ListUserAction">
+			<result name="success">/user_list.jsp</result>
+		</action>
+		<action name="loginUser" class="LoginUserAction">
+			<result name="success">/index.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="deleteUser" class="DeleteUserAction">
+			<result name="success">/index.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="findUser" class="FindUserAction">
+			<result name="success">/user_list.jsp</result>
+		</action>
+		<action name="userInfo" class="UserInfoAction">
+			<result name="success">/user_info.jsp</result>
+		</action>
+		<action name="exitUser" class="ExitUserAction">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="checkUser" class="CheckUserAction">
+			<result name="success" type="redirect">listCheckedUser.action</result>
+			<result name="error" type="redirect">listCheckedUser.action</result>
+		</action>
+		<action name="adminLogin" class="AdminLoginAction">
+			<result name="success">/admin.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="listNoCheck" class="ListNoCheckAction">
+			<result name="success">/nochecked_user.jsp</result>
+		</action>
+		<action name="joinLeague" class="JoinLeagueAction">
+			<result name="success" type="redirect">/listLeague.action</result>
+			<result name="input">/login.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listUserByLeague" class="ListUserByLeagueAction">
+			<result name="success">/user_list.jsp</result>
+		</action>
+		<action name="listCheckedUser" class="ListCheckedUserAction">
+			<result name="success">/user_list.jsp</result>
+		</action>
+		<action name="saveAdmin" class="SaveAdminAction">
+			<result name="success" type="redirect">listMaster.action</result>
+			<result name="input">/master_save.jsp</result>
+		</action>
+		<action name="listMaster" class="ListMasterAction">
+			<result name="success" >/master_list.jsp</result>
+		</action>
+		<action name="listApply" class="ListApplyAction">
+			<result name="success" >/apply.jsp</result>
+		</action>
+		<action name="applyExit" class="ApplyExitAction">
+			<result name="success" >/index.jsp</result>
+			<result name="input" >/login.jsp</result>
+			<result name="error" >/login.jsp</result>
+		</action>
+		<action name="exitLeague" class="ExitLeagueAction">
+			<result name="success" type="redirect">listApply.action</result>
+		</action>
+		<action name="deleteApply" class="DeleteApplyAction">
+			<result name="success" type="redirect">listApply.action</result>
+			<result name="input">/login.jsp</result>
+		</action>
+	</package>
+
+	<package name="league" extends="struts-default">
+		<action name="listLeague" class="ListLeagueAction">
+			<result name="success">/league_list.jsp</result>
+		</action>
+		<action name="saveLeague" class="SaveLeagueAction">
+			<result name="success" type="redirect">listLeague.action</result>
+			<result name="input">league_save.jsp</result>
+		</action>
+		<action name="deleteLeague" class="DeleteLeagueAction">
+			<result name="success" type="redirect">listLeague.action</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="updatepLeague" class="UpdatePreLeagueAction">
+			<result name="success">/league_update.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="updateLeague" class="UpdateLeagueAction">
+			<result name="success" type="redirect">listLeague.action</result>
+		</action>
+		<action name="findLeague" class="FindLeagueAction">
+			<result name="success">/league_list.jsp</result>
+		</action>
+		<action name="leagueInfo" class="LeagueInfoAction">
+			<result name="success">/league_info.jsp</result>
+		</action>
+	</package>
+
+	<package name="notice" extends="struts-default">
+		<action name="listNotice" class="ListNoticeAction">
+			<result name="success">/notice_list.jsp</result>
+		</action>
+		<action name="updatepNotice" class="UpdatePreNoticeAction">
+			<result name="success">/notice_update.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="updateNotice" class="UpdateNoticeAction">
+			<result name="success" type="redirect">listNotice.action</result>
+		</action>
+		<action name="saveNotice" class="SaveNoticeAction">
+			<result name="success" type="redirect">listNotice.action</result>
+			<result name="input">notice_save.jsp</result>
+		</action>
+		<action name="deleteNotice" class="DeleteNoticeAction">
+			<result name="success" type="redirect">listNotice.action</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="findNotice" class="FindNoticeAction">
+			<result name="success">notice_list.jsp</result>
+		</action>
+		<action name="noticeInfo" class="NoticeInfoAction">
+			<result name="success">/notice_info.jsp</result>
+		</action>
+	</package>
+
+	<package name="action" extends="struts-default">
+		<action name="listAction" class="ListActionAction">
+			<result name="success">/checked_action.jsp</result>
+		</action>
+		<action name="updatepAction" class="UpdatePreActionAction">
+			<result name="success">/action_update.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="updateAction" class="UpdateActionAction">
+			<result name="success" type="redirect">listAction.action</result>
+		</action>
+		<action name="saveAction" class="SaveActionAction">
+			<result name="success" type="redirect">checkedAction.action</result>
+			<result name="input">action_save.jsp</result>
+		</action>
+		<action name="deleteAction" class="DeleteActionAction">
+			<result name="success" type="redirect">checkedAction.action</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="findAction" class="FindActionAction">
+			<result name="success">checked_action.jsp</result>
+		</action>
+		<action name="checkedAction" class="ListCheckedAction">
+			<result name="success">checked_action.jsp</result>
+		</action>
+		<action name="nocheckedAction" class="ListNoCheckedAction">
+			<result name="success">nochecked_action.jsp</result>
+		</action>
+		<action name="checkAction" class="CheckActionAction">
+			<result name="success" type="redirect">checkedAction.action</result>
+		</action>
+		<action name="actionInfo" class="ActionInfoAction">
+			<result name="success">/action_info.jsp</result>
+		</action>
+	</package>
+
+
+
+	<package name="board" extends="struts-default">
+		<action name="listBoard" class="ListBoardAction">
+			<result name="success">/board_list.jsp</result>
+		</action>
+		<action name="saveBoard" class="SaveBoardAction">
+			<result name="success" type="redirect">listBoard.action</result>
+			<result name="input" type="redirect">listBoard.action</result>
+			<result name="error" >/login.jsp</result>
+		</action>
+		<action name="deleteBoard" class="DeleteBoardAction">
+			<result name="success" type="redirect">listBoard.action</result>
+			<result name="error" >/login.jsp</result>
+		</action>
+	</package>
+
+
+</struts>

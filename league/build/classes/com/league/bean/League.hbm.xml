@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.league.bean.League" table="league">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+
+		<property name="lname" type="java.lang.String" column="lname"
+			length="30" />
+		<property name="day" type="java.lang.String" column="day"
+			length="20" />
+		<property name="master" type="java.lang.String" column="master"
+			length="20" />
+		<property name="introduce" type="java.lang.String" column="introduce"
+			length="10000" />
+		<property name="email" type="java.lang.String" column="email"
+			length="50" />
+	</class>
+</hibernate-mapping>	

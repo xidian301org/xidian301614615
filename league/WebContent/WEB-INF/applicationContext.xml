@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/league"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="zhzhx1122"></property>
+		<property name="maxActive" value="100"></property>
+		<property name="maxIdle" value="30"></property>
+		<property name="maxWait" value="500"></property>
+		<property name="defaultAutoCommit" value="true"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/league/bean/User.hbm.xml</value>
+				<value>com/league/bean/Action.hbm.xml</value>
+				<value>com/league/bean/League.hbm.xml</value>
+				<value>com/league/bean/Notice.hbm.xml</value>
+				<value>com/league/bean/Board.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- User -->
+
+	<bean id="UserDao" class="com.league.dao.UserDao" scope="singleton">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserService" class="com.league.service.UserService">
+		<property name="userDao" ref="UserDao"></property>
+	</bean>
+	<bean id="SaveUserAction" class="com.league.action.SaveUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="ListUserAction" class="com.league.action.ListUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="LoginUserAction" class="com.league.action.LoginUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="DeleteUserAction" class="com.league.action.DeleteUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="FindUserAction" class="com.league.action.FindUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="UserInfoAction" class="com.league.action.UserInfoAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="ExitUserAction" class="com.league.action.ExitUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="CheckUserAction" class="com.league.action.CheckUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="AdminLoginAction" class="com.league.action.AdminLoginAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="ListNoCheckAction" class="com.league.action.ListNoCheckAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="ListCheckedUserAction" class="com.league.action.ListCheckedUserAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="SaveAdminAction" class="com.league.action.SaveAdminAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="ListMasterAction" class="com.league.action.ListMasterAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	<bean id="ListApplyAction" class="com.league.action.ListApplyAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+	
+		<bean id="ExitLeagueAction" class="com.league.action.ExitLeagueAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+		
+	</bean>
+	<bean id="DeleteApplyAction" class="com.league.action.DeleteApplyAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+	</bean>
+
+
+
+
+	<!-- Action -->
+
+	<bean id="ActionDao" class="com.league.dao.ActionDao" scope="singleton">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ActionService" class="com.league.service.ActionService">
+		<property name="actionDao" ref="ActionDao"></property>
+	</bean>
+	<bean id="SaveActionAction" class="com.league.action.action.SaveActionAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="ListActionAction" class="com.league.action.action.ListActionAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="DeleteActionAction" class="com.league.action.action.DeleteActionAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="UpdatePreActionAction" class="com.league.action.action.UpdatePreActionAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="UpdateActionAction" class="com.league.action.action.UpdateActionAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="FindActionAction" class="com.league.action.action.FindActionAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="ListCheckedAction" class="com.league.action.action.ListCheckedAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="ListNoCheckedAction" class="com.league.action.action.ListNoCheckedAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="CheckActionAction" class="com.league.action.action.CheckActionAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+	<bean id="ActionInfoAction" class="com.league.action.action.ActionInfoAction"
+		scope="prototype">
+		<property name="service" ref="ActionService"></property>
+	</bean>
+
+
+
+	<!-- League -->
+
+	<bean id="LeagueDao" class="com.league.dao.LeagueDao" scope="singleton">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="LeagueService" class="com.league.service.LeagueService">
+		<property name="leagueDao" ref="LeagueDao"></property>
+	</bean>
+	<bean id="SaveLeagueAction" class="com.league.action.league.SaveLeagueAction"
+		scope="prototype">
+		<property name="service" ref="LeagueService"></property>
+	</bean>
+	<bean id="ListLeagueAction" class="com.league.action.league.ListLeagueAction"
+		scope="prototype">
+		<property name="service" ref="LeagueService"></property>
+	</bean>
+	<bean id="DeleteLeagueAction" class="com.league.action.league.DeleteLeagueAction"
+		scope="prototype">
+		<property name="service" ref="LeagueService"></property>
+	</bean>
+	<bean id="UpdatePreLeagueAction" class="com.league.action.league.UpdatePreLeagueAction"
+		scope="prototype">
+		<property name="service" ref="LeagueService"></property>
+	</bean>
+	<bean id="UpdateLeagueAction" class="com.league.action.league.UpdateLeagueAction"
+		scope="prototype">
+		<property name="service" ref="LeagueService"></property>
+	</bean>
+	<bean id="FindLeagueAction" class="com.league.action.league.FindLeagueAction"
+		scope="prototype">
+		<property name="service" ref="LeagueService"></property>
+	</bean>
+	<bean id="LeagueInfoAction" class="com.league.action.league.LeagueInfoAction"
+		scope="prototype">
+		<property name="service" ref="LeagueService"></property>
+	</bean>
+
+	<!-- Join -->
+
+	<bean id="JoinLeagueAction" class="com.league.action.JoinLeagueAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+		<property name="leagueService" ref="LeagueService"></property>
+	</bean>
+	<bean id="ListUserByLeagueAction" class="com.league.action.ListUserByLeagueAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+		<property name="leagueService" ref="LeagueService"></property>
+	</bean>
+	<bean id="ApplyExitAction" class="com.league.action.ApplyExitAction"
+		scope="prototype">
+		<property name="service" ref="UserService"></property>
+		<property name="leagueService" ref="LeagueService"></property>
+	</bean>
+
+
+	<!-- Notice -->
+
+	<bean id="NoticeDao" class="com.league.dao.NoticeDao" scope="singleton">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="NoticeService" class="com.league.service.NoticeService">
+		<property name="noticeDao" ref="NoticeDao"></property>
+	</bean>
+	<bean id="SaveNoticeAction" class="com.league.action.notice.SaveNoticeAction"
+		scope="prototype">
+		<property name="service" ref="NoticeService"></property>
+	</bean>
+	<bean id="ListNoticeAction" class="com.league.action.notice.ListNoticeAction"
+		scope="prototype">
+		<property name="service" ref="NoticeService"></property>
+	</bean>
+	<bean id="DeleteNoticeAction" class="com.league.action.notice.DeleteNoticeAction"
+		scope="prototype">
+		<property name="service" ref="NoticeService"></property>
+	</bean>
+	<bean id="UpdatePreNoticeAction" class="com.league.action.notice.UpdatePreNoticeAction"
+		scope="prototype">
+		<property name="service" ref="NoticeService"></property>
+	</bean>
+	<bean id="UpdateNoticeAction" class="com.league.action.notice.UpdateNoticeAction"
+		scope="prototype">
+		<property name="service" ref="NoticeService"></property>
+	</bean>
+	<bean id="FindNoticeAction" class="com.league.action.notice.FindNoticeAction"
+		scope="prototype">
+		<property name="service" ref="NoticeService"></property>
+	</bean>
+	<bean id="NoticeInfoAction" class="com.league.action.notice.NoticeInfoAction"
+		scope="prototype">
+		<property name="service" ref="NoticeService"></property>
+	</bean>
+
+	<!-- Board -->
+
+	<bean id="BoardDao" class="com.league.dao.BoardDao" scope="singleton">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BoardService" class="com.league.service.BoardService">
+		<property name="boardDao" ref="BoardDao"></property>
+	</bean>
+	<bean id="SaveBoardAction" class="com.league.action.board.SaveBoardAction"
+		scope="prototype">
+		<property name="service" ref="BoardService"></property>
+	</bean>
+	<bean id="ListBoardAction" class="com.league.action.board.ListBoardAction"
+		scope="prototype">
+		<property name="service" ref="BoardService"></property>
+	</bean>
+	<bean id="DeleteBoardAction" class="com.league.action.board.DeleteBoardAction"
+		scope="prototype">
+		<property name="service" ref="BoardService"></property>
+	</bean>
+</beans>
